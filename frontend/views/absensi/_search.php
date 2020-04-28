@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_sales')->dropDownList(ArrayHelper::map(Sales::find()->all(),'id','nama')) ?>
+    <?= $form->field($model, 'tgl'); ?> <?= $form->field($model, 'id_sales')->dropDownList(ArrayHelper::map(Sales::find()->all(),'id','nama')) ?>
 
     <?php // echo $form->field($model, 'app_version') ?>
 
