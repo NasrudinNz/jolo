@@ -1,33 +1,36 @@
 <?php
 
 use yii\helpers\Html;
-use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\models\AbsensiSearch */
+/* @var $searchModel app\models\SupervisorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Absensi';
+$this->title = 'Supervisors';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="absensi-index">
+<div class="supervisor-index">
 
-<?php Pjax::begin(); ?>
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         #'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            
-            'tgl',
-            'alamat:ntext',
+
+            'nama',
+            'alamat',
+            'hp1',
+            //'tgl_simpan',
+            //'aktif',
+            #'username',
+            //'pass',
+            //'os_id:ntext',
         ],
     ]); ?>
-    <?php Pjax::end(); ?>
 
 
 </div>

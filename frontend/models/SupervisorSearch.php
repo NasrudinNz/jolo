@@ -1,17 +1,15 @@
 <?php
 
-namespace frontend\models;
+namespace app\models;
 
-use DateInterval;
-use DateTime;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Absensi;
+use app\models\Supervisor;
 
 /**
- * AbsensiSearch represents the model behind the search form of `frontend\models\Absensi`.
+ * SupervisorSearch represents the model behind the search form of `app\models\Supervisor`.
  */
-class AbsensiSearch extends Absensi
+class SupervisorSearch extends Supervisor
 {
     /**
      * {@inheritdoc}
@@ -19,8 +17,8 @@ class AbsensiSearch extends Absensi
     public function rules()
     {
         return [
-            [['id', 'id_sales'], 'integer'],
-            [['lat', 'lang', 'tgl', 'alamat', 'app_version'], 'safe'],
+            [['id', 'aktif'], 'integer'],
+            [['nama', 'alamat', 'hp1', 'hp2', 'tgl_simpan', 'username', 'pass', 'os_id'], 'safe'],
         ];
     }
 
@@ -42,7 +40,7 @@ class AbsensiSearch extends Absensi
      */
     public function search($params)
     {
-        $query = Absensi::find();
+        $query = Supervisor::find();
 
         // add conditions that should always apply here
 
@@ -61,13 +59,19 @@ class AbsensiSearch extends Absensi
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_sales' => $this->id_sales,
-            'tgl' => $this->tgl,
+            'tgl_simpan' => $this->tgl_simpan,
+            'aktif' => $this->aktif,
         ]);
 
-        $query
-            ->andFilterWhere(['>', 'tgl' , date('Y-m-d 00:00:00')])
-            ->orderBy(['tgl'=>SORT_DESC]);
+        $query->andFilterWhere(['like', 'nama', $this->nama])
+            ->andFilterWhere(['like', 'alamat', $this->alamat])
+            ->andFilterWhere(['like', 'hp1', $this->hp1])
+            ->andFilterWhere(['like', 'hp2', $this->hp2])
+            ->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'pass', $this->pass])
+            ->andFilterWhere(['like', 'os_id', $this->os_id])
+            ->andFilterWhere(['<>', 'nama', 'DSI'])
+            ->orderBy('nama', SORT_ASC);
 
         return $dataProvider;
     }

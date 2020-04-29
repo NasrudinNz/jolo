@@ -1,18 +1,18 @@
 <?php
 
-namespace app\models;
+namespace frontend\controllers;
 
 use Yii;
-use app\models\Sales;
-use app\models\SalesSearch;
+use app\models\Supervisor;
+use app\models\SupervisorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SalesController implements the CRUD actions for Sales model.
+ * SupervisorController implements the CRUD actions for Supervisor model.
  */
-class SalesController extends Controller
+class SupervisorController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class SalesController extends Controller
     }
 
     /**
-     * Lists all Sales models.
+     * Lists all Supervisor models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SalesSearch();
+        $searchModel = new SupervisorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SalesController extends Controller
     }
 
     /**
-     * Displays a single Sales model.
+     * Displays a single Supervisor model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class SalesController extends Controller
     }
 
     /**
-     * Creates a new Sales model.
+     * Creates a new Supervisor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Sales();
+        $model = new Supervisor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class SalesController extends Controller
     }
 
     /**
-     * Updates an existing Sales model.
+     * Updates an existing Supervisor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class SalesController extends Controller
     }
 
     /**
-     * Deletes an existing Sales model.
+     * Deletes an existing Supervisor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class SalesController extends Controller
     }
 
     /**
-     * Finds the Sales model based on its primary key value.
+     * Finds the Supervisor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sales the loaded model
+     * @return Supervisor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sales::findOne($id)) !== null) {
+        if (($model = Supervisor::findOne($id)) !== null) {
             return $model;
         }
 

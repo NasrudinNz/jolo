@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "sales".
+ * This is the model class for table "supervisor".
  *
  * @property int $id
  * @property string $nama
@@ -17,18 +17,15 @@ use Yii;
  * @property string $username
  * @property string $pass
  * @property string $os_id
- * @property int $id_supervisor
- *
- * @property Pelanggan[] $pelanggans
  */
-class Sales extends \yii\db\ActiveRecord
+class Supervisor extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'sales';
+        return 'supervisor';
     }
 
     /**
@@ -37,9 +34,9 @@ class Sales extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama', 'alamat', 'hp1', 'hp2', 'tgl_simpan', 'username', 'pass', 'os_id', 'id_supervisor'], 'required'],
+            [['nama', 'alamat', 'hp1', 'hp2', 'tgl_simpan', 'username', 'pass', 'os_id'], 'required'],
             [['tgl_simpan'], 'safe'],
-            [['aktif', 'id_supervisor'], 'integer'],
+            [['aktif'], 'integer'],
             [['os_id'], 'string'],
             [['nama'], 'string', 'max' => 100],
             [['alamat'], 'string', 'max' => 200],
@@ -56,24 +53,13 @@ class Sales extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nama' => 'Nama',
             'alamat' => 'Alamat',
-            'hp1' => 'No. Telepon (1)',
-            'hp2' => 'No. Telepon (2)',
+            'hp1' => 'No. Telepon(1)',
+            'hp2' => 'No. Telepon(2)',
             'tgl_simpan' => 'Tgl Simpan',
             'aktif' => 'Aktif',
             'username' => 'Username',
             'pass' => 'Pass',
             'os_id' => 'Os ID',
-            'id_supervisor' => 'Id Supervisor',
         ];
-    }
-
-    /**
-     * Gets query for [[Pelanggans]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPelanggans()
-    {
-        return $this->hasMany(Pelanggan::className(), ['id_sales' => 'id']);
     }
 }
