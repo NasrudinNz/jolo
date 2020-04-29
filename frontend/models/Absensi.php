@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use app\models\Sales;
 use Yii;
 
 /**
@@ -54,5 +55,15 @@ class Absensi extends \yii\db\ActiveRecord
             'alamat' => 'Alamat',
             'app_version' => 'App Version',
         ];
+    }
+
+    public function getSales()
+    {
+        return $this->hasOne(Sales::className(), ['id' => 'id_sales']);
+    }
+
+    public function getSalesName()
+    {
+        if($this->sales){return $this->sales->nama;}
     }
 }

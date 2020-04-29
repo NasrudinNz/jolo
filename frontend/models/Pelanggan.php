@@ -61,7 +61,7 @@ class Pelanggan extends \yii\db\ActiveRecord
 
     public function getKategoriName()
     {
-        return $this->kategori->nama;
+        if($this->kategori) {return $this->kategori->nama;}
     }
 
     public function getSales()
@@ -71,7 +71,7 @@ class Pelanggan extends \yii\db\ActiveRecord
 
     public function getSalesName()
     {
-        return $this->sales->nama;
+        if($this->sales){return $this->sales->nama;}
     }
 
     public function getKategoriBaru()

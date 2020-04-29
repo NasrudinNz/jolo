@@ -48,6 +48,9 @@ class AbsensiSearch extends Absensi
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20, 
+            ], 
         ]);
 
         $this->load($params);
@@ -67,7 +70,7 @@ class AbsensiSearch extends Absensi
 
         $query
             ->andFilterWhere(['>', 'tgl' , date('Y-m-d 00:00:00')])
-            ->orderBy(['tgl'=>SORT_DESC]);
+            ->orderBy(['tgl'=>SORT_ASC]);
 
         return $dataProvider;
     }
