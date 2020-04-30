@@ -11,6 +11,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use kartik\grid\GridView as KGridView;
+use kartik\select2\Select2;
 use PharIo\Manifest\Url;
 use yii\bootstrap\Modal;
 use yii\widgets\Pjax;
@@ -21,10 +22,11 @@ use yii\widgets\Pjax;
 
 $this->title = 'Data Pelanggan';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
-
 <div class="pelanggan-index">
+ 
     <?php #echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php Pjax::begin(); ?>
     <?= KGridView::widget([
@@ -88,14 +90,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'KecName',
                 'filter'=>ArrayHelper::map(SetKec::find()->asArray()->all(), 'id', 'nama'),
             ],
-            // [
-            //     'attribute' => 'id_kelurahan',
-            //     'label'=>'Kelurahan',
-            //     'value'=>'DesaName',
-            //     'filter'=>ArrayHelper::map(SetDesa::find()->asArray()->all(), 'id', 'nama'),
-            // ],
-
-            'id_kelurahan',
+            [
+                'attribute' => 'id_kelurahan',
+                'label'=>'Kelurahan',
+                'value'=>'DesaName',
+            ],
             'alamat',
             'rt',
             'rw',

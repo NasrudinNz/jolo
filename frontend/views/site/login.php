@@ -21,10 +21,14 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#">DAIHATSU<b>JOLO</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
+
+        
+        <p class="login-box-msg"><?= Html::img('@web/images/bg1.png', ['alt'=>'some', 'width'=>'250px']);?></p>
+        <p><h2 class="login-box-msg"><a href="#">DAIHATSU<b>JOLO</b></a></h3></p>
+
         <p class="login-box-msg">Sign in to start your session</p>
 
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>

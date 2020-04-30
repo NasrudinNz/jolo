@@ -70,6 +70,7 @@ class AbsensiSearch extends Absensi
 
         $query
             ->andFilterWhere(['>', 'tgl' , date('Y-m-d 00:00:00')])
+            ->andFilterWhere(['<>', 'id_sales','46'])
             ->orderBy(['tgl'=>SORT_ASC]);
 
         return $dataProvider;

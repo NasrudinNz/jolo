@@ -70,9 +70,9 @@ class SalesSearch extends Sales
             ->andFilterWhere(['like', 'hp2', $this->hp2])
             ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'pass', $this->pass])
-            ->andFilterWhere(['<>', 'id', '46'])
-            ->andFilterWhere(['<>', 'id', '47'])
-            ->andFilterWhere(['<>', 'id', '48'])
+            ->andFilterWhere(['<>', 'nama', 'dsi'])
+            ->andFilterWhere(['<>', 'nama', 'DSI SALES'])
+            ->andFilterWhere(['<>', 'nama', 'DSI SALES2'])
             ->andFilterWhere(['like', 'os_id', $this->os_id]);
 
         return $dataProvider;
