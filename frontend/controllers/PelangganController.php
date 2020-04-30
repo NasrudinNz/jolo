@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use app\models\Pelanggan;
 use app\models\PelangganSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,9 +18,26 @@ class PelangganController extends Controller
     /**
      * {@inheritdoc}
      */
+
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'actions' => ['index','create','update','delete'],
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -28,7 +46,6 @@ class PelangganController extends Controller
             ],
         ];
     }
-
     /**
      * Lists all Pelanggan models.
      * @return mixed

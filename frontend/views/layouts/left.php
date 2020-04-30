@@ -13,6 +13,7 @@
                     ['label' => 'Data Sales', 'icon' => 'user', 'url' => ['/sales']],
                     ['label' => 'Data Supervisor', 'icon' => 'user', 'url' => ['/supervisor']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Logout', 'url' => ['site/logout'], 'hide' => Yii::$app->user->isGuest],
                 ],
             ]
         ) ?>
