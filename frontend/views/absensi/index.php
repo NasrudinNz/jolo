@@ -32,12 +32,28 @@ $this->params['breadcrumbs'][] = $this->title;
             
             
             [
+                'attribute' => 'tgl',
+                'format' => 'date',
+                'filterType' => KGridView::FILTER_DATE,
+                   'filterWidgetOptions' => [
+                    'value' => date('Y-m-d'),
+                   'size' => 'xs',
+                   'pluginOptions' => [
+                      'format' => 'yyyy-mm-dd',
+                      'autoWidget' => true,
+                      'autoclose' => true,
+                      'todayHighlight' => true
+                    ]
+                 ],
+            ],
+
+            [
                 'attribute' => 'id_sales',
                 'label'=>'Sales',
                 'value'=>'SalesName',
                 'filter'=>ArrayHelper::map(Sales::find()->asArray()->all(), 'id', 'nama'),
             ],
-            'tgl',
+            
             'alamat:ntext',
         ],
     ]); ?>

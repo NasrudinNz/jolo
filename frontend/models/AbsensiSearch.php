@@ -40,6 +40,9 @@ class AbsensiSearch extends Absensi
      *
      * @return ActiveDataProvider
      */
+
+     
+
     public function search($params)
     {
         $query = Absensi::find();
@@ -65,14 +68,15 @@ class AbsensiSearch extends Absensi
         $query->andFilterWhere([
             'id' => $this->id,
             'id_sales' => $this->id_sales,
-            'tgl' => $this->tgl,
         ]);
 
         $query
-            ->andFilterWhere(['>', 'tgl' , date('Y-m-d 00:00:00')])
+            ->andFilterWhere(['>', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d  00:00:00")])
+            ->andFilterWhere(['<', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d  23:59:59")])
             ->andFilterWhere(['<>', 'id_sales','46'])
             ->orderBy(['tgl'=>SORT_ASC]);
 
         return $dataProvider;
+        var_dump($dataProvider);
     }
 }
