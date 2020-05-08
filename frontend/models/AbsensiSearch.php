@@ -31,7 +31,7 @@ class AbsensiSearch extends Absensi
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
-    }
+    } 
 
     /**
      * Creates data provider instance with search query applied
@@ -39,9 +39,7 @@ class AbsensiSearch extends Absensi
      * @param array $params
      *
      * @return ActiveDataProvider
-     */
-
-     
+     */ 
 
     public function search($params)
     {
@@ -71,8 +69,8 @@ class AbsensiSearch extends Absensi
         ]);
 
         $query
-            ->andFilterWhere(['>', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d  00:00:00")])
-            ->andFilterWhere(['<', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d  23:59:59")])
+            ->andFilterWhere(['>', 'tgl' ,$this->tgl.' 00:00:00'])
+            ->andFilterWhere(['<', 'tgl' , $this->tgl.' 23:59:59'])
             ->andFilterWhere(['<>', 'id_sales','46'])
             ->orderBy(['tgl'=>SORT_ASC]);
 
