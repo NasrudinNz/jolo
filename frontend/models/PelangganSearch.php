@@ -32,7 +32,7 @@ class PelangganSearch extends Pelanggan
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,   
+                'pageSize' => 20,   
             
             ]
         ]);

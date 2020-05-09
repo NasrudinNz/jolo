@@ -61,6 +61,14 @@ class AbsensiController extends Controller
         ]);
     }
 
+    public function actionSearch()
+    {
+        $searchModel = new AbsensiSearch();
+        return $this->renderAjax('_search', [
+            'model' => $searchModel,
+            'pagination' => false]);
+    }
+
     /**
      * Displays a single Absensi model.
      * @param integer $id

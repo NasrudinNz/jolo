@@ -20,6 +20,7 @@ class AbsensiSearch extends Absensi
     {
         return [
             [['id', 'id_sales'], 'integer'],
+            ['tgl', 'default', 'value' => date('Y-m-d 00:00:00')],
             [['lat', 'lang', 'tgl', 'alamat', 'app_version'], 'safe'],
         ];
     }
@@ -43,6 +44,7 @@ class AbsensiSearch extends Absensi
 
     public function search($params)
     {
+
         $query = Absensi::find();
 
         // add conditions that should always apply here
@@ -69,12 +71,11 @@ class AbsensiSearch extends Absensi
         ]);
 
         $query
-            ->andFilterWhere(['>', 'tgl' ,$this->tgl.' 00:00:00'])
-            ->andFilterWhere(['<', 'tgl' , $this->tgl.' 23:59:59'])
+            ->andFilterWhere(['>=', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d 00:00:00")])
+            ->andFilterWhere(['<=', 'tgl' , \Yii::$app->formatter->asDatetime($this->tgl, "php:Y-m-d 23:59:59")])
             ->andFilterWhere(['<>', 'id_sales','46'])
-            ->orderBy(['tgl'=>SORT_ASC]);
+            ->orderBy(['id_sales'=>SORT_ASC],['tgl'=>SORT_ASC]);
 
         return $dataProvider;
-        var_dump($dataProvider);
     }
 }

@@ -61,6 +61,14 @@ class PelangganController extends Controller
         ]);
     }
 
+    public function actionSearch()
+    {
+        $searchModel = new PelangganSearch();
+        return $this->renderAjax('_search', [
+            'model' => $searchModel,
+            'pagination' => false]);
+    }
+
     /**
      * Displays a single Pelanggan model.
      * @param integer $id

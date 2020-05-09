@@ -6,6 +6,7 @@ use app\models\SetDesa;
 use app\models\SetKec;
 use app\models\SetKota;
 use app\models\SetMerk;
+use app\models\SetTipe;
 use app\models\SetWarna;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -14,6 +15,7 @@ use kartik\grid\GridView as KGridView;
 use kartik\select2\Select2;
 use PharIo\Manifest\Url;
 use yii\bootstrap\Modal;
+use yii\helpers\Url as HelpersUrl;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -22,20 +24,38 @@ use yii\widgets\Pjax;
 
 $this->title = 'Data Pelanggan';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
 <div class="pelanggan-index">
  
     <?php #echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php Pjax::begin(); ?>
+    
     <?= KGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'hover' => true,
+        'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
+        'pjax' => true,
         'bordered' => true,
-        'resizableColumns' => true,
-        'striped'=>false,
+        'striped' => false,
+        'condensed' => false,
+        'responsive' => true,
+        'hover' => true,
+        'persistResize' => false,
+        'panel' => [
+            'type' => KGridView::TYPE_DANGER,
+        ],      
+        'toolbar' =>  [
+            ['content'=>
+            Html::a('RESET', ['index'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')]),
+            ],
+            '{toggleData}',
+            '{export}',            
+        ],
+        'toggleDataContainer' => ['class' => 'btn-group mr-2'],
+        'export' => [
+            'fontAwesome' => true
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -69,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_tipe',
                 'label'=>'Tipe',
                 'value'=>'TipeName',
-                'filter'=>ArrayHelper::map(SetMerk::find()->asArray()->all(), 'id', 'nama'),
+                'filter'=>ArrayHelper::map(SetTipe::find()->asArray()->all(), 'id', 'nama'),
             ],
             [
                 'attribute' => 'id_warna',

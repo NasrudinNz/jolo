@@ -1,12 +1,12 @@
 <?php
 
 use app\models\Sales;
-use yii\helpers\Html;
-use dosamigos\datepicker\DatePicker;
-use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 use kartik\grid\GridView as KGridView;
+use yii\bootstrap\Modal;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\AbsensiSearch */
@@ -14,29 +14,50 @@ use kartik\grid\GridView as KGridView;
 
 $this->title = 'Absensi';
 $this->params['breadcrumbs'][] = $this->title;
+
+$js=<<<js
+$('.modalButton').on('click', function () {
+    $('#modal').modal('show')
+            .find('#modalContent')
+            .load($(this).attr('value'));
+});
+js;
+$this->registerJs($js);
+
 ?>
 <div class="absensi-index">
 
     <?php  #echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?php Pjax::begin(); ?>
+
+    <!--
+    <p>
+        <a class="btn btn-primary modalButton" value="<?= Url::to(['absensi/search']) ?>">Filter</a>
+    </p> -->
+
     <?= KGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'hover' => true,
+        'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
+        'pjax' => true,
         'bordered' => true,
-        'resizableColumns' => true,
-        'striped'=>false,
+        'striped' => false,
+        'condensed' => false,
+        'responsive' => true,
+        'hover' => true,
+        'panel' => [
+            'type' => KGridView::TYPE_DANGER,
+        ],           
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            
+            ['class' => 'kartik\grid\SerialColumn'],           
             
             [
                 'attribute' => 'tgl',
-                'format' => 'date',
+                'format' => ['date', 'php:d-m-Y H:i:s'],
                 'filterType' => KGridView::FILTER_DATE,
                    'filterWidgetOptions' => [
-                    'value' => date('Y-m-d'),
+                   'value' => date('Y-m-d'),
                    'size' => 'xs',
                    'pluginOptions' => [
                       'format' => 'dd-mm-yyyy',
@@ -58,6 +79,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     <?php Pjax::end(); ?>
-
-
 </div>
+
+    <?php
+        Modal::begin([
+            'header' => 'Modal',
+            'id' => 'modal',
+            'size' => 'modal-md',
+        ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
+    ?>
