@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Sales;
+use app\models\Supervisor;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -17,7 +18,8 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_sales')->dropDownList(ArrayHelper::map(Sales::find()->all(),'id','nama')) ?>
+    <?= $form->field($model, 'id_sales')->dropDownList(
+        ArrayHelper::map(Sales::find()->all(),'id','nama')) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

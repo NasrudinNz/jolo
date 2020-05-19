@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Supervisor;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,25 +17,22 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'id')->dropDownList(
+        ArrayHelper::map(Supervisor::find()->all(),'id','nama'),
+        ['prompt'=>'',
+        'onchange'=>'
+        $.post( "'.Yii::$app->urlManager->createUrl('supervisor/lists?id=').'"+$(this).val(), function( data ) {
+        $( "select#nama" ).html( data );
+        });'
+        ]);
 
-    <?= $form->field($model, 'nama') ?>
-
-    <?= $form->field($model, 'alamat') ?>
-
-    <?= $form->field($model, 'hp1') ?>
-
-    <?= $form->field($model, 'hp2') ?>
-
-    <?php // echo $form->field($model, 'tgl_simpan') ?>
-
-    <?php // echo $form->field($model, 'aktif') ?>
-
-    <?php // echo $form->field($model, 'username') ?>
-
-    <?php // echo $form->field($model, 'pass') ?>
-
-    <?php // echo $form->field($model, 'os_id') ?>
+        $dataPost=ArrayHelper::map(Supervisor::find()->asArray()->all(), 'id', 'nama');
+        echo $form->field($model, 'nama')
+        ->dropDownList(
+        $dataPost,
+        ['id'=>'nama']
+        );
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

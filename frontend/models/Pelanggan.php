@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Query;
 
 class Pelanggan extends \yii\db\ActiveRecord
 {

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use app\models\Sales;
 use Yii;
 use app\models\Supervisor;
 use app\models\SupervisorSearch;
@@ -44,6 +45,26 @@ class SupervisorController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionLists($id)
+    {
+        $countPosts = Supervisor::find()
+        ->where(['id' => $id])
+        ->count();
+        
+        $posts = Sales::find()
+        ->where(['id_supervisor' => $id])
+        ->orderBy('id DESC')
+        ->all();
+        
+        if($countPosts>0){
+            foreach($posts as $post){
+                echo "<option value='".$post->id."'>".$post->nama."</option>";
+            }
+        }else{
+            echo "<option>-</option>";
+        }
     }
 
     /**

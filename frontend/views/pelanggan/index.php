@@ -14,6 +14,7 @@ use yii\helpers\ArrayHelper;
 use kartik\grid\GridView as KGridView;
 use kartik\select2\Select2;
 use PharIo\Manifest\Url;
+use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url as HelpersUrl;
 use yii\widgets\Pjax;
@@ -64,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_kategori',
                 'label'=>'Kategori',
                 'value'=>'KategoriName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(KategoriPel::find()->asArray()->all(), 'id', 'nama'),
             ],
             [
@@ -75,6 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_sales',
                 'label'=>'Nama Sales',
                 'value'=>'SalesName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(Sales::find()->asArray()->all(), 'id', 'nama'),
             ],
 
@@ -83,31 +86,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_merk',
                 'label'=>'Merk',
                 'value'=>'MerkName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetMerk::find()->asArray()->all(), 'id', 'nama'),
             ],
             [
                 'attribute' => 'id_tipe',
                 'label'=>'Tipe',
                 'value'=>'TipeName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetTipe::find()->asArray()->all(), 'id', 'nama'),
             ],
             [
                 'attribute' => 'id_warna',
                 'label'=>'Warna',
                 'value'=>'WarnaName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetWarna::find()->asArray()->all(), 'id', 'nama'),
             ],
 
             [
                 'attribute' => 'id_kota',
                 'label'=>'Kota',
-                'value'=>'KotaName',
-                'filter'=>ArrayHelper::map(SetKota::find()->asArray()->all(), 'id', 'nama'),
+                'value'=>'KotaName',                
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
+                'filter'=>ArrayHelper::map(SetKota::find()->where(['provinsi_id' => 35])->asArray()->all(), 'id', 'nama'),
             ],
             [
                 'attribute' => 'id_kec',
                 'label'=>'Kecamatan',
                 'value'=>'KecName',
+                'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetKec::find()->asArray()->all(), 'id', 'nama'),
             ],
             [

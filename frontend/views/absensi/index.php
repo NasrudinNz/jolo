@@ -31,10 +31,9 @@ $this->registerJs($js);
 
     <?php Pjax::begin(); ?>
 
-    <!--
     <p>
-        <a class="btn btn-primary modalButton" value="<?= Url::to(['absensi/search']) ?>">Filter</a>
-    </p> -->
+        <a class="btn btn-danger modalButton" value="<?= Url::to(['absensi/search']) ?>">Filter</a>
+    </p> 
 
     <?= KGridView::widget([
         'dataProvider' => $dataProvider,

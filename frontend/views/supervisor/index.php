@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="supervisor-index">
 
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php #echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

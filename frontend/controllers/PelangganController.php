@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use Yii;
 use app\models\Pelanggan;
 use app\models\PelangganSearch;
+use app\models\SetKec;
+use app\models\SetKota;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -59,6 +61,26 @@ class PelangganController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionLists($id)
+    {
+        $countPosts = SetKota::find()
+        ->where(['id' => $id])
+        ->count();
+        
+        $posts = SetKec::find()
+        ->where(['id_kota' => $id])
+        ->orderBy('id DESC')
+        ->all();
+        
+        if($countPosts>0){
+            foreach($posts as $post){
+                echo "<option value='".$post->id."'>".$post->nama."</option>";
+            }
+        }else{
+            echo "<option>-</option>";
+        }
     }
 
     public function actionSearch()

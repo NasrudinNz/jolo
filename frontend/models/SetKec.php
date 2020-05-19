@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\debug\models\timeline\DataProvider;
 
 /**
  * This is the model class for table "set_kec".
