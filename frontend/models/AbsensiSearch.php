@@ -66,7 +66,6 @@ class AbsensiSearch extends Absensi
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'id_sales' => $this->id_sales,
         ]);
 

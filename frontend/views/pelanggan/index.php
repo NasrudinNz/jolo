@@ -67,6 +67,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'KategoriName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(KategoriPel::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih kategori --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             [
                 'attribute' => 'tgl_kategori',
@@ -79,6 +85,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'SalesName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(Sales::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih sales --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
 
 
@@ -88,6 +100,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'MerkName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetMerk::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih merk --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             [
                 'attribute' => 'id_tipe',
@@ -95,6 +113,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'TipeName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetTipe::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih tipe --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             [
                 'attribute' => 'id_warna',
@@ -102,6 +126,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'WarnaName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetWarna::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih warna --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
 
             [
@@ -110,6 +140,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'KotaName',                
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetKota::find()->where(['provinsi_id' => 35])->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih kota --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             [
                 'attribute' => 'id_kec',
@@ -117,6 +153,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'KecName',
                 'filterType' => \kartik\grid\GridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(SetKec::find()->asArray()->all(), 'id', 'nama'),
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih kecamatan --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             [
                 'attribute' => 'id_kelurahan',

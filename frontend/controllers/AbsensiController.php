@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use app\models\Sales;
+use app\models\Supervisor;
 use Yii;
 use frontend\models\Absensi;
 use frontend\models\AbsensiSearch;
@@ -59,6 +61,26 @@ class AbsensiController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionLists($id)
+    {
+        $countPosts = Supervisor::find()
+        ->where(['id' => $id])
+        ->count();
+        
+        $posts = Sales::find()
+        ->where(['id_supervisor' => $id])
+        ->orderBy('id DESC')
+        ->all();
+        
+        if($countPosts>0){
+            foreach($posts as $post){
+                echo "<option value='".$post->id."'>".$post->nama."</option>";
+            }
+        }else{
+            echo "<option>-</option>";
+        }
     }
 
     public function actionSearch()

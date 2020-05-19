@@ -31,9 +31,9 @@ $this->registerJs($js);
 
     <?php Pjax::begin(); ?>
 
-    <p>
+    <!--<p>
         <a class="btn btn-danger modalButton" value="<?= Url::to(['absensi/search']) ?>">Filter</a>
-    </p> 
+    </p>-->
 
     <?= KGridView::widget([
         'dataProvider' => $dataProvider,
@@ -43,11 +43,24 @@ $this->registerJs($js);
         'bordered' => true,
         'striped' => false,
         'condensed' => false,
-        'responsive' => true,
+        'responsive' => false,
+        'resizableColumns'=>true,
         'hover' => true,
         'panel' => [
             'type' => KGridView::TYPE_DANGER,
-        ],           
+        ],   
+        'toolbar' =>  [
+            [
+                'content' =>
+                Html::a('RESET', ['index'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('app', 'Reset Grid')]),
+            ],
+            '{export}',
+            '{toggleData}',
+        ],
+        'toggleDataContainer' => ['class' => 'btn-group mr-2'],
+        'export' => [
+            'fontAwesome' => true
+        ],        
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],           
             
@@ -65,13 +78,22 @@ $this->registerJs($js);
                       'todayHighlight' => true
                     ]
                  ],
+                 'headerOptions' => ['style' => 'width:20%'],
             ],
 
             [
                 'attribute' => 'id_sales',
                 'label'=>'Sales',
                 'value'=>'SalesName',
+                'filterType' => KGridView::FILTER_SELECT2, 
                 'filter'=>ArrayHelper::map(Sales::find()->asArray()->all(), 'id', 'nama'),
+                'headerOptions' => ['style' => 'width:30%'],
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => '-- Pilih sales --'],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                ],
             ],
             
             'alamat:ntext',
